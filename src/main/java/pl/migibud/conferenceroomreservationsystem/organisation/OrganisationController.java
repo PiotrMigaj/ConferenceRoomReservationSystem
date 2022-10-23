@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationException;
-import pl.migibud.conferenceroomreservationsystem.organisation.repo.OrganisationRepository;
 
 import javax.validation.Valid;
 import java.net.URI;

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationException;
-import pl.migibud.conferenceroomreservationsystem.organisation.repo.OrganisationRepository;
 
 import static pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationError.ORGANISATION_ALREADY_EXISTS;
 import static pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationError.ORGANISATION_NOT_FOUND;

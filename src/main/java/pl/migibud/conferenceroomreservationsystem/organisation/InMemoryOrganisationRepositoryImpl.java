@@ -1,31 +1,25 @@
-package pl.migibud.conferenceroomreservationsystem.organisation.repo;
+package pl.migibud.conferenceroomreservationsystem.organisation;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import pl.migibud.conferenceroomreservationsystem.organisation.Organisation;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class InMemoryOrganisationRepositoryImpl implements OrganisationRepository{
+class InMemoryOrganisationRepositoryImpl implements OrganisationRepository {
     @Override
     public List<Organisation> findAllByStatus(Sort sort, Organisation.Status status) {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public Iterable<Organisation> findAll(Sort sort) {
-        throw new UnsupportedOperationException();
-    }
-
-    public static final Map<Long, Organisation> ORGANISATION_IN_MEM_DB = new ConcurrentHashMap<>();
+    private final Map<Long, Organisation> organisationInMemDb = new ConcurrentHashMap<>();
 
     @Override
     public Optional<Organisation> findById(Long id) {
-        return ORGANISATION_IN_MEM_DB.entrySet().stream()
+        return organisationInMemDb.entrySet().stream()
                 .filter(v->v.getKey().equals(id))
                 .map(Map.Entry::getValue)
                 .findFirst();
@@ -33,7 +27,7 @@ public class InMemoryOrganisationRepositoryImpl implements OrganisationRepositor
 
     @Override
     public Optional<Organisation> findByName(String name) {
-        return ORGANISATION_IN_MEM_DB.entrySet().stream()
+        return organisationInMemDb.entrySet().stream()
                 .filter(v->v.getValue().getName().equals(name))
                 .map(Map.Entry::getValue)
                 .findFirst();
@@ -41,10 +35,10 @@ public class InMemoryOrganisationRepositoryImpl implements OrganisationRepositor
 
     @Override
     public Organisation save(Organisation organisation) {
-        long id = ORGANISATION_IN_MEM_DB.size();
+        long id = organisationInMemDb.size();
         organisation.setId(++id);
-        ORGANISATION_IN_MEM_DB.put(id,organisation);
-        return ORGANISATION_IN_MEM_DB.get(id);
+        organisationInMemDb.put(id,organisation);
+        return organisationInMemDb.get(id);
     }
 
     @Override
@@ -57,10 +51,7 @@ public class InMemoryOrganisationRepositoryImpl implements OrganisationRepositor
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    public List<Organisation> findAllByStatus(Organisation.Status status) {
-        throw new UnsupportedOperationException();
-    }
+
 
     @Override
     public Page<Organisation> findAllByStatus(Pageable pageable, Organisation.Status status) {
