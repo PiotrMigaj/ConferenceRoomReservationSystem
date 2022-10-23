@@ -57,4 +57,9 @@ class InMemoryOrganisationRepositoryImpl implements OrganisationRepository {
     public Page<Organisation> findAllByStatus(Pageable pageable, Organisation.Status status) {
         throw new UnsupportedOperationException();
     }
+
+    @Override
+    public void deleteAll() {
+        throw new UnsupportedOperationException();
+    }
 }

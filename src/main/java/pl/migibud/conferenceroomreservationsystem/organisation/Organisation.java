@@ -3,16 +3,13 @@ package pl.migibud.conferenceroomreservationsystem.organisation;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @ToString
 public class Organisation  {
 
@@ -29,6 +26,11 @@ public class Organisation  {
 
     public Organisation(String name) {
         this.name = name;
+    }
+
+    public Organisation(String name, Status status) {
+        this.name = name;
+        this.status = status;
     }
 
     public enum Status{

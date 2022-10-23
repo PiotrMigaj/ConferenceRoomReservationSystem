@@ -9,7 +9,7 @@ import pl.migibud.conferenceroomreservationsystem.organisation.OrganisationRepos
 class BeanConfiguration {
 
     @Bean
-    OrganisationFacade organisationService(OrganisationRepository organisationRepository){
+    OrganisationFacade organisationFacade(OrganisationRepository organisationRepository){
         return new OrganisationFacade(organisationRepository);
     }
 }

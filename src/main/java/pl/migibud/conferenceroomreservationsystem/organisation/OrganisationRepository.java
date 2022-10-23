@@ -15,5 +15,6 @@ public interface OrganisationRepository {
     Optional<Organisation> findByNameAndAndStatus(String name,Organisation.Status status);
     List<Organisation> findAllByStatus(Sort sort,Organisation.Status status);
     Page<Organisation> findAllByStatus(Pageable pageable,Organisation.Status status);
+    void deleteAll();
 
 }
