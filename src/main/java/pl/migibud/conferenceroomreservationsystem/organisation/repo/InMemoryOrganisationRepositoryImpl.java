@@ -2,6 +2,7 @@ package pl.migibud.conferenceroomreservationsystem.organisation.repo;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import pl.migibud.conferenceroomreservationsystem.organisation.Organisation;
 
 import java.util.List;
@@ -10,6 +11,15 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class InMemoryOrganisationRepositoryImpl implements OrganisationRepository{
+    @Override
+    public List<Organisation> findAllByStatus(Sort sort, Organisation.Status status) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Iterable<Organisation> findAll(Sort sort) {
+        throw new UnsupportedOperationException();
+    }
 
     public static final Map<Long, Organisation> ORGANISATION_IN_MEM_DB = new ConcurrentHashMap<>();
 
@@ -39,6 +49,11 @@ public class InMemoryOrganisationRepositoryImpl implements OrganisationRepositor
 
     @Override
     public Optional<Organisation> findByIdAndAndStatus(Long id, Organisation.Status status) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Optional<Organisation> findByNameAndAndStatus(String name, Organisation.Status status) {
         throw new UnsupportedOperationException();
     }
 

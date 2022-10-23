@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,9 +28,12 @@ class OrganisationController {
 
     @GetMapping(params = {"!page","!size"})
     ResponseEntity<List<Organisation>> getAllOrganisations(
-            @RequestParam(required = false,defaultValue = "ACTIVE") Organisation.Status status
+            @RequestParam(required = false,defaultValue = "ACTIVE") Organisation.Status status,
+            @RequestParam(required = false,defaultValue = "name") String sortBy,
+            @RequestParam(required = false,defaultValue = "asc") String sortDir
     ){
-        return ResponseEntity.ok(organisationRepository.findAllByStatus(status));
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name())?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+        return ResponseEntity.ok(organisationRepository.findAllByStatus(sort,status));
     }
 
     @GetMapping
@@ -42,9 +46,10 @@ class OrganisationController {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/{id}")
-    ResponseEntity<Organisation> getOrganisationById(@PathVariable Long id){
-        Organisation result = organisationRepository.findByIdAndAndStatus(id, Organisation.Status.ACTIVE)
+
+    @GetMapping("/{name}")
+    ResponseEntity<Organisation> getOrganisationByName(@PathVariable String name){
+        Organisation result = organisationRepository.findByNameAndAndStatus(name, Organisation.Status.ACTIVE)
                 .orElseThrow(() -> new OrganisationException(ORGANISATION_NOT_FOUND));
         return ResponseEntity.ok(result);
     }
