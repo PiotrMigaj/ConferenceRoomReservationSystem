@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import pl.migibud.conferenceroomreservationsystem.exception.conference.room.ConferenceRoomError;
+import pl.migibud.conferenceroomreservationsystem.exception.conference.room.ConferenceRoomException;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationError;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationException;
 
@@ -28,6 +30,18 @@ class AppExceptionHandler extends ResponseEntityExceptionHandler {
             httpStatus = HttpStatus.BAD_REQUEST;
         }
         return ResponseEntity.status(httpStatus).body(new ErrorInfo(Collections.singletonList(e.getOrganisationError().getMessage())));
+    }
+
+    @ExceptionHandler(value = ConferenceRoomException.class)
+    ResponseEntity<ErrorInfo> handleConferenceRoomException(ConferenceRoomException e){
+        HttpStatus httpStatus = null;
+        if (ConferenceRoomError.CONFERENCE_ROOM_NOT_FOUND.equals(e.getConferenceRoomError())){
+            httpStatus = HttpStatus.NOT_FOUND;
+        }
+        if (ConferenceRoomError.CONFERENCE_ROOM_NAME_NOT_UNIQUE_FOR_ORGANISATION.equals(e.getConferenceRoomError())){
+            httpStatus = HttpStatus.BAD_REQUEST;
+        }
+        return ResponseEntity.status(httpStatus).body(new ErrorInfo(Collections.singletonList(e.getConferenceRoomError().getMessage())));
     }
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {

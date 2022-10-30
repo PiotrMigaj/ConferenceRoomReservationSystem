@@ -1,12 +1,10 @@
-package pl.migibud.conferenceroomreservationsystem;
+package pl.migibud.conferenceroomreservationsystem.organisation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.migibud.conferenceroomreservationsystem.organisation.OrganisationFacade;
-import pl.migibud.conferenceroomreservationsystem.organisation.OrganisationRepository;
 
 @Configuration
-class BeanConfiguration {
+class OrganisationConfiguration {
 
     @Bean
     OrganisationFacade organisationFacade(OrganisationRepository organisationRepository){

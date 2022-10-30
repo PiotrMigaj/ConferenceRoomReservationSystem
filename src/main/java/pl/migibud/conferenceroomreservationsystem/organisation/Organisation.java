@@ -1,9 +1,12 @@
 package pl.migibud.conferenceroomreservationsystem.organisation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import pl.migibud.conferenceroomreservationsystem.conference.room.ConferenceRoom;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,6 +26,10 @@ public class Organisation  {
     private String name;
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "organisation")
+    private Set<ConferenceRoom> conferenceRooms;
 
     public Organisation(String name) {
         this.name = name;

@@ -56,7 +56,7 @@ class OrganisationController {
     @PostMapping
     ResponseEntity<Organisation> registerOrganisation(@RequestBody @Valid Organisation organisationToSave){
         Organisation result = organisationFacade.registerOrganisation(organisationToSave);
-        return ResponseEntity.created(URI.create("api/organisation"+result.getId())).body(result);
+        return ResponseEntity.created(URI.create("api/organisation/"+result.getName())).body(result);
     }
 
     @DeleteMapping("/{id}")
