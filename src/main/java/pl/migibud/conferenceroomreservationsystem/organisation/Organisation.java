@@ -40,6 +40,12 @@ public class Organisation  {
         this.status = status;
     }
 
+    public Organisation(Long id, String name, Status status) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+    }
+
     public enum Status{
         ACTIVE,INACTIVE
     }

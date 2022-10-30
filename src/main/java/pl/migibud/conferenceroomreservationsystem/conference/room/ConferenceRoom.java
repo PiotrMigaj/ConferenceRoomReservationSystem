@@ -87,6 +87,7 @@ public class ConferenceRoom {
                 .level(level)
                 .availability(availability)
                 .numberOfSeats(numberOfSeats)
+                .organisationId(organisation.getId())
                 .build();
     }
 

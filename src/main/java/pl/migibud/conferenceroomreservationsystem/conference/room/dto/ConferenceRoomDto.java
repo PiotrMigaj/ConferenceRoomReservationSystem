@@ -13,4 +13,5 @@ public class ConferenceRoomDto {
     private int level;
     private boolean availability;
     private int numberOfSeats;
+    private Long organisationId;
 }

@@ -41,6 +41,9 @@ class AppExceptionHandler extends ResponseEntityExceptionHandler {
         if (ConferenceRoomError.CONFERENCE_ROOM_NAME_NOT_UNIQUE_FOR_ORGANISATION.equals(e.getConferenceRoomError())){
             httpStatus = HttpStatus.BAD_REQUEST;
         }
+        if (ConferenceRoomError.CONFERENCE_ROOM_ALREADY_EXISTS.equals(e.getConferenceRoomError())){
+            httpStatus = HttpStatus.CONFLICT;
+        }
         return ResponseEntity.status(httpStatus).body(new ErrorInfo(Collections.singletonList(e.getConferenceRoomError().getMessage())));
     }
     @Override

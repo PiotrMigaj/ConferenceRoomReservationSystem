@@ -16,7 +16,8 @@ public interface ConferenceRoomQueryRepository {
             "c.identifier," +
             "c.level," +
             "c.availability," +
-            "c.numberOfSeats) " +
+            "c.numberOfSeats, " +
+            "c.organisation.id) " +
             "FROM ConferenceRoom c WHERE c.id=?1")
     Optional<ConferenceRoomDto> getByIdBy(String id);
 }

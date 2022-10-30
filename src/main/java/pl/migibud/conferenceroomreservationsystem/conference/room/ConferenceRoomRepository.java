@@ -12,7 +12,7 @@ interface ConferenceRoomRepository {
     Optional<ConferenceRoom> findById(String id);
     void delete(ConferenceRoom conferenceRoom);
     Optional<ConferenceRoom> findByNameAndOrganisation_Id(String name,Long organisationId);
+    void deleteAll();
 }
-
 interface SqlConferenceRoomRepository extends ConferenceRoomRepository, JpaRepository<ConferenceRoom,String>{
 }

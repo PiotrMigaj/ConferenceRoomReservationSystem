@@ -45,8 +45,6 @@ public class ConferenceRoomFacade {
                             throw new ConferenceRoomException(ConferenceRoomError.CONFERENCE_ROOM_ALREADY_EXISTS);
                         });
 
-
-
         return conferenceRoomRepository.findById(id)
                 .map(conferenceRoom -> {
                     conferenceRoom.setName(createConferenceRoomRequest.getName()!=null?createConferenceRoomRequest.getName(): conferenceRoom.getName());

@@ -1,5 +1,7 @@
 package pl.migibud.conferenceroomreservationsystem.conference.room.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,6 +9,8 @@ import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class CreateConferenceRoomRequest {
     @NotBlank
     private String name;
