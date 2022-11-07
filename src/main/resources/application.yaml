@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:crrsdb
+    url: jdbc:h2:file:./crrs-db
     username: 'sa'
     password:
     driverClassName: org.h2.Driver

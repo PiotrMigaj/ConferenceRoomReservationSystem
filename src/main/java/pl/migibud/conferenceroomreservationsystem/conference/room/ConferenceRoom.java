@@ -24,8 +24,8 @@ import java.util.UUID;
 public class ConferenceRoom {
 
     @Id
-    @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
     private String id;
     private String name;
     @Pattern(regexp = "^\\d\\.\\d{2}$",message = "{conference.room.identifier.must.fit.pattern.'d.dd'.where.'d equals digit'}")

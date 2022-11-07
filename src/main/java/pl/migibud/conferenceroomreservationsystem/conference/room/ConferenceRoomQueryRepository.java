@@ -20,6 +20,8 @@ public interface ConferenceRoomQueryRepository {
             "c.organisation.id) " +
             "FROM ConferenceRoom c WHERE c.id=?1")
     Optional<ConferenceRoomDto> getByIdBy(String id);
+
+    Optional<ConferenceRoom> findById(String id);
 }
 
 interface SqlConferenceRoomQueryRepository extends ConferenceRoomQueryRepository, JpaRepository<ConferenceRoom,String>{
