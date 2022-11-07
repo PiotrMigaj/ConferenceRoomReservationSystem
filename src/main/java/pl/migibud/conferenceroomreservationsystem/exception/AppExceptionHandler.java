@@ -12,6 +12,8 @@ import pl.migibud.conferenceroomreservationsystem.exception.conference.room.Conf
 import pl.migibud.conferenceroomreservationsystem.exception.conference.room.ConferenceRoomException;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationError;
 import pl.migibud.conferenceroomreservationsystem.exception.organisation.OrganisationException;
+import pl.migibud.conferenceroomreservationsystem.exception.reservation.ReservationError;
+import pl.migibud.conferenceroomreservationsystem.exception.reservation.ReservationException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,6 +48,28 @@ class AppExceptionHandler extends ResponseEntityExceptionHandler {
         }
         return ResponseEntity.status(httpStatus).body(new ErrorInfo(Collections.singletonList(e.getConferenceRoomError().getMessage())));
     }
+
+    @ExceptionHandler(value = ReservationException.class)
+    ResponseEntity<ErrorInfo> handleReservationException(ReservationException e){
+        HttpStatus httpStatus = null;
+        if (ReservationError.RESERVATION_NOT_FOUND.equals(e.getReservationError())){
+            httpStatus = HttpStatus.NOT_FOUND;
+        }
+        if (ReservationError.RESERVATION_ALREADY_EXISTS.equals(e.getReservationError())){
+            httpStatus = HttpStatus.CONFLICT;
+        }
+        if (ReservationError.RESERVATION_DURATION_TOO_SHORT.equals(e.getReservationError())){
+            httpStatus = HttpStatus.BAD_REQUEST;
+        }
+        if (ReservationError.RESERVATION_DURATION_TOO_LONG.equals(e.getReservationError())){
+            httpStatus = HttpStatus.BAD_REQUEST;
+        }
+        if (ReservationError.RESERVATION_DATE_TIME_MISMATCH.equals(e.getReservationError())){
+            httpStatus = HttpStatus.CONFLICT;
+        }
+        return ResponseEntity.status(httpStatus).body(new ErrorInfo(Collections.singletonList(e.getReservationError().getMessage())));
+    }
+
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = new ArrayList<>();

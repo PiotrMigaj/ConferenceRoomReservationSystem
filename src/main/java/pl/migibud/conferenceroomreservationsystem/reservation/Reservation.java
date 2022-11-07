@@ -1,8 +1,10 @@
 package pl.migibud.conferenceroomreservationsystem.reservation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import pl.migibud.conferenceroomreservationsystem.conference.room.ConferenceRoom;
 import pl.migibud.conferenceroomreservationsystem.reservation.dto.CreateReservationRequest;
@@ -12,11 +14,10 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-
-@Getter(value = AccessLevel.PACKAGE)
+@Setter
+@Getter
 @NoArgsConstructor
-
-class Reservation {
+public class Reservation {
 
     @Id
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -28,6 +29,7 @@ class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "conference_room_id")
+    @JsonIgnore
     private ConferenceRoom conferenceRoom;
 
     Reservation(LocalDateTime startDate, LocalDateTime endDate, String reservationName, ConferenceRoom conferenceRoom) {

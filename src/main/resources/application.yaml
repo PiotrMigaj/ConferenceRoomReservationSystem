@@ -19,3 +19,8 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+values:
+  reservation:
+    minimum.time.reservation.in.minutes: 15
+    maximum.time.reservation.in.minutes: 120
+
