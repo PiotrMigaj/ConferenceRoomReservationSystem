@@ -1,6 +1,7 @@
 package pl.migibud.conferenceroomreservationsystem.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JsonParserUtil {
     private JsonParserUtil(){
@@ -8,7 +9,9 @@ public class JsonParserUtil {
 
     public static <T> String asJsonString(final T t) {
         try {
-            return new ObjectMapper().writeValueAsString(t);
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule());
+            return objectMapper.writeValueAsString(t);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -9,7 +9,7 @@ interface ReservationRepository {
     Reservation save(Reservation reservation);
     void delete(Reservation reservation);
     Optional<Reservation> findById(String id);
-    Optional<Reservation> findByConferenceRoom_IdAndStartDateLessThanAndEndDateGreaterThan(String organisationId, LocalDateTime endDate,LocalDateTime startDate);
+    Optional<Reservation> findByConferenceRoom_IdAndStartDateLessThanAndEndDateGreaterThan(String conferenceRoomId, LocalDateTime endDate,LocalDateTime startDate);
 }
 
 interface SqlReservationRepository extends ReservationRepository, JpaRepository<Reservation,String>{

@@ -1,10 +1,7 @@
 package pl.migibud.conferenceroomreservationsystem.reservation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import pl.migibud.conferenceroomreservationsystem.conference.room.ConferenceRoom;
 import pl.migibud.conferenceroomreservationsystem.reservation.dto.CreateReservationRequest;
@@ -17,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
+@ToString
 public class Reservation {
 
     @Id
@@ -30,6 +28,7 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "conference_room_id")
     @JsonIgnore
+    @ToString.Exclude
     private ConferenceRoom conferenceRoom;
 
     Reservation(LocalDateTime startDate, LocalDateTime endDate, String reservationName, ConferenceRoom conferenceRoom) {
@@ -39,7 +38,7 @@ public class Reservation {
         this.conferenceRoom = conferenceRoom;
     }
 
-    static Reservation of(CreateReservationRequest request,ConferenceRoom conferenceRoom){
+    static Reservation of(CreateReservationRequest request, ConferenceRoom conferenceRoom){
         return new Reservation(
                 request.getStartDate(),
                 request.getEndDate(),
@@ -57,5 +56,7 @@ public class Reservation {
                 .conferenceRoomId(conferenceRoom.getId())
                 .build();
     }
+
+
 
 }

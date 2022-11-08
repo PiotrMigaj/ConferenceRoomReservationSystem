@@ -23,7 +23,7 @@ import java.util.List;
 class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = OrganisationException.class)
-    ResponseEntity<ErrorInfo> handleAppUserException(OrganisationException e){
+    ResponseEntity<ErrorInfo> handleOrganisationException(OrganisationException e){
         HttpStatus httpStatus = null;
         if (OrganisationError.ORGANISATION_NOT_FOUND.equals(e.getOrganisationError())){
             httpStatus = HttpStatus.NOT_FOUND;

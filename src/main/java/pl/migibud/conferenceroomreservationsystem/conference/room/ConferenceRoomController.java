@@ -44,7 +44,7 @@ class ConferenceRoomController {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ConferenceRoomDto> getConferenceRoomByName(@PathVariable String id){
+    ResponseEntity<ConferenceRoomDto> getConferenceRoomById(@PathVariable String id){
         ConferenceRoomDto conferenceRoomDto = conferenceRoomQueryRepository.getByIdBy(id)
                 .orElseThrow(() ->new ConferenceRoomException(ConferenceRoomError.CONFERENCE_ROOM_NOT_FOUND));
         return ResponseEntity.ok(conferenceRoomDto);

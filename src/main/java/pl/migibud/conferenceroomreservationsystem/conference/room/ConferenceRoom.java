@@ -41,6 +41,23 @@ public class ConferenceRoom {
     @EqualsAndHashCode.Exclude
     private Organisation organisation;
 
+    public ConferenceRoom(String name, String identifier, Integer level, Boolean availability, Integer numberOfSeats) {
+        this.name = name;
+        this.identifier = identifier;
+        this.level = level;
+        this.availability = availability;
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public ConferenceRoom(String id, String name, String identifier, Integer level, Boolean availability, Integer numberOfSeats) {
+        this.id = id;
+        this.name = name;
+        this.identifier = identifier;
+        this.level = level;
+        this.availability = availability;
+        this.numberOfSeats = numberOfSeats;
+    }
+
     private ConferenceRoom(String name, String identifier, int level, boolean availability, int numberOfSeats, Organisation organisation) {
         this.name = name;
         this.identifier = identifier;

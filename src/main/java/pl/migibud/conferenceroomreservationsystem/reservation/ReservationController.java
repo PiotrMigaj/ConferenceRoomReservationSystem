@@ -13,8 +13,6 @@ import pl.migibud.conferenceroomreservationsystem.reservation.dto.CreateReservat
 import pl.migibud.conferenceroomreservationsystem.reservation.dto.ReservationDto;
 import pl.migibud.conferenceroomreservationsystem.reservation.dto.ReservationView;
 
-import javax.validation.Valid;
-
 @Slf4j
 @RestController
 @RequestMapping("/api/reservations")
